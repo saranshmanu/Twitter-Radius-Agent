@@ -6,6 +6,9 @@ target 'Twitter' do
   use_frameworks!
 
   # Pods for Twitter
+pod 'Alamofire', '~> 4.0'
+pod 'RealmSwift'
+pod 'RxSwift'
 
   target 'TwitterTests' do
     inherit! :search_paths
