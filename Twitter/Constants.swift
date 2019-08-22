@@ -12,3 +12,9 @@ import UIKit
 class Theme {
     static var blueColor: UIColor = UIColor.init(red: 56/255, green: 161/255, blue: 243/255, alpha: 1.0)
 }
+
+class AuthenticationKeys {
+    static let key =  "​yD7KaBsAJSjqeOLXTucW2pVCz"
+    static let secret = "​kQdZMLEPXja7WkDsqRcHYUSFhl9z0lp6pbLzBJScgynrYQgkMF"
+    static var token =  "​"
+}
