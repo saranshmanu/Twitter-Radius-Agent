@@ -152,9 +152,9 @@
 				956808FF230E84F400844C7C /* Base64Encoding.swift */,
 				956808EE230D9AE400844C7C /* Constants.swift */,
 				956808FA230DB0F000844C7C /* Managers */,
+				956808F2230D9EA400844C7C /* Model */,
 				956808F4230D9EB200844C7C /* ViewModel */,
 				956808F3230D9EAC00844C7C /* View */,
-				956808F2230D9EA400844C7C /* Model */,
 				956808CC230D96BE00844C7C /* Info.plist */,
 			);
 			path = Twitter;

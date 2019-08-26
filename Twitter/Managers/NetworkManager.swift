@@ -39,12 +39,10 @@ class NetworkHandler {
 // the Network Manager class mannages the differnt requests to the Twitter backend to fetech results
 class NetworkManager {
     // to authenticate the user and fetch the token for accessing the application
-    public static func authenticate(authenticationSecret: String, authenticationKey: String, completion: @escaping (Bool, String?) -> ()) {
-        let base64Text: String = authenticationKey + ":" + authenticationSecret
-        let base64Encoded: String = base64Text.toBase64()
+    public static func authenticate(encodedKey: String, completion: @escaping (Bool, String?) -> ()) {
         let url: String = "https://api.twitter.com/oauth2/token"
         let header = [
-            "Authorization" : "Basic \(base64Encoded)",
+            "Authorization" : "Basic \(encodedKey)",
             "Content-Type"  : "application/x-www-form-urlencoded"
             ] as HTTPHeaders
         let parameters = [
@@ -53,8 +51,13 @@ class NetworkManager {
         
         NetworkHandler.post(url: url, header: header, parameters: parameters) { (error, result) in
             if error == false {
-                let token = result?["access_token"] as! String
-                completion(true, token)
+                let response = result!
+                if let token = response["access_token"] as? String {
+                    AuthenticationKeys.token = token
+                    completion(true, token)
+                } else {
+                    completion(false, nil)
+                }
             } else {
                 completion(false, nil)
             }
@@ -65,7 +68,7 @@ class NetworkManager {
     public static func getTweets(query: String, completion: @escaping (Bool, NSDictionary?) -> ()) {
         let url = "https://api.twitter.com/1.1/search/tweets.json" + "?q=" + query
         let header = [
-            "Authorization" : "Bearer \(AuthenticationKeys.token)",
+            "Authorization": "Bearer \(AuthenticationKeys.token)",
             ] as HTTPHeaders
         
         NetworkHandler.get(url: url, header: header) { (error, tweets) in

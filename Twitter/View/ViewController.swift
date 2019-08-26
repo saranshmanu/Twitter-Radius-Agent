@@ -17,22 +17,23 @@ class ViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        updateTweets()
+        updateCachedTweets()
         DispatchQueue.main.async {
-            self.checkForTweetUpdates(query: "")
+            self.checkForTweetUpdates(query: "elon")
         }
     }
-    
-    func updateTweets() {
-        let _: [Tweet] = TweetViewModel.getTweets()
+
+    func updateCachedTweets() {
+        let tweets: [Tweet] = TweetViewModel.getTweets()
         // make all the following UI updates to proceed
+        print(tweets.count)
     }
-    
+
     func checkForTweetUpdates(query: String) {
         TweetViewModel.refreshTweets(query: query) {(success, tweets) in
             if success == true {
                 // updates available and updating the UI accordingly
-                self.updateTweets()
+                self.updateCachedTweets()
             } else {
                 // no new tweet updates available for the UI updation
             }

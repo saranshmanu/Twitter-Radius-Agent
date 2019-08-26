@@ -16,5 +16,15 @@ class Theme {
 class AuthenticationKeys {
     static let key =  "​yD7KaBsAJSjqeOLXTucW2pVCz"
     static let secret = "​kQdZMLEPXja7WkDsqRcHYUSFhl9z0lp6pbLzBJScgynrYQgkMF"
+    static let encoding = "yD7KaBsAJSjqeOLXTucW2pVCz:kQdZMLEPXja7WkDsqRcHYUSFhl9z0lp6pbLzBJScgynrYQgkMF"
     static var token =  "​"
+}
+
+class TwitterKeys {
+    static let tweetId =  "​id_str"
+    static let username = "​screen_name"
+    static let text =  "​text"
+    static let user = "user"
+    static let createdDate =  "​created_at"
+    static let status = "statuses"
 }

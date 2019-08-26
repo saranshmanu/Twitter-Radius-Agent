@@ -17,7 +17,7 @@ class DatabaseManager {
         DatabaseManager.database = try! Realm()
     }
     
-    public static func add(tweet: Tweet) {
+    public static func addTweet(tweet: Tweet) {
         try! database?.write {
             database?.add(tweet)
         }
