@@ -23,6 +23,12 @@ class DatabaseManager {
         }
     }
     
+    public static func removeTweets() {
+        try! database?.write {
+            database?.deleteAll()
+        }
+    }
+    
     public static func getTweets() -> [Tweet] {
         return Array((database?.objects(Tweet.self))!)
     }

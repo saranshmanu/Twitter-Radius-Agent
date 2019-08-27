@@ -28,6 +28,26 @@ class TwitterNewsFeedViewModel {
         return date
     }
     
+    public func dateSummary(date: Date) -> String {
+        let tweetDate = Calendar.current.dateComponents([.day, .hour, .second, .minute], from: date)
+        let currentDate = Calendar.current.dateComponents([.day, .hour, .second, .minute], from: Date.init())
+        let seconds = currentDate.second! - tweetDate.second!
+        let minutes = currentDate.minute! - tweetDate.minute!
+        let hours = currentDate.hour! - tweetDate.hour!
+        let days = currentDate.day! - tweetDate.day!
+        if days > 0 {
+            return "\(String(describing: days))d"
+        } else if hours > 0 {
+            return "\(String(describing: hours))h"
+        } else if minutes > 0 {
+            return "\(String(describing: minutes))m"
+        } else if seconds > 0 {
+            return "\(String(describing: seconds))s"
+        } else {
+            return ""
+        }
+    }
+    
     let cache = NSCache<NSString, UIImage>()
     
     // get the cached image
@@ -36,7 +56,7 @@ class TwitterNewsFeedViewModel {
         if image != nil {
             return image!
         } else {
-            return UIImage.init(named: "logo")!
+            return UIImage.init(named: "black")!
         }
     }
 
@@ -49,6 +69,7 @@ class TwitterNewsFeedViewModel {
 
     // cache the tweets from the newly fetched data on twitter
     private func cacheData(tweets: NSDictionary) {
+        DatabaseManager.removeTweets()
         let flag = tweets["statuses"] as! [NSDictionary]
         for i in flag {
             let tweet = Tweet()
@@ -59,8 +80,15 @@ class TwitterNewsFeedViewModel {
             tweet.date = self.parseDate(date: i["created_at"] as! String)
             let user = i["user"] as! NSDictionary
             tweet.username = user["screen_name"] as? String
+            tweet.name = user["name"] as? String
             tweet.imageUrl = user["profile_image_url_https"] as? String
             self.saveImage(url: tweet.imageUrl!)
+            let entities = i["entities"] as! NSDictionary
+            if let media = entities["media"] as! [NSDictionary]? {
+                let a = media[0]
+                tweet.bannerUrl = a["media_url_https"] as? String
+                self.saveImage(url: tweet.bannerUrl!)
+            }
             DatabaseManager.addTweet(tweet: tweet)
         }
         updateNewsFeed()

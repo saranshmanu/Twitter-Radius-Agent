@@ -10,6 +10,8 @@ import UIKit
 
 class NewsFeedTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var tweetImageView: UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var propertiesButton: UIButton!
     @IBOutlet weak var commentButton: UIButton!
     @IBOutlet weak var likeButton: UIButton!
@@ -23,6 +25,7 @@ class NewsFeedTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         userView.layer.cornerRadius = userView.frame.height/2
+        tweetImageView.layer.cornerRadius = 10
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

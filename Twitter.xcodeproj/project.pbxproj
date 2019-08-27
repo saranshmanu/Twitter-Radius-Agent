@@ -151,9 +151,7 @@
 		956808BF230D96BC00844C7C /* Twitter */ = {
 			isa = PBXGroup;
 			children = (
-				956808FF230E84F400844C7C /* Base64Encoding.swift */,
-				956808EE230D9AE400844C7C /* Constants.swift */,
-				956808FA230DB0F000844C7C /* Managers */,
+				95C345D32315899C0037410B /* Source */,
 				956808F2230D9EA400844C7C /* Model */,
 				956808F4230D9EB200844C7C /* ViewModel */,
 				956808F3230D9EAC00844C7C /* View */,
@@ -191,7 +189,7 @@
 		956808F3230D9EAC00844C7C /* View */ = {
 			isa = PBXGroup;
 			children = (
-				95680903231536AC00844C7C /* TableCell */,
+				95680903231536AC00844C7C /* TableViewCells */,
 				956808F9230DAEFA00844C7C /* Storyboards */,
 				956808C7230D96BE00844C7C /* Assets.xcassets */,
 				956808C0230D96BC00844C7C /* AppDelegate.swift */,
@@ -226,12 +224,38 @@
 			path = Managers;
 			sourceTree = "<group>";
 		};
-		95680903231536AC00844C7C /* TableCell */ = {
+		95680903231536AC00844C7C /* TableViewCells */ = {
 			isa = PBXGroup;
 			children = (
 				956809012315369400844C7C /* NewsFeedTableViewCell.swift */,
 			);
-			path = TableCell;
+			path = TableViewCells;
+			sourceTree = "<group>";
+		};
+		95C345D12315898A0037410B /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				956808FF230E84F400844C7C /* Base64Encoding.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		95C345D2231589910037410B /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				956808EE230D9AE400844C7C /* Constants.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		95C345D32315899C0037410B /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				95C345D12315898A0037410B /* Extensions */,
+				95C345D2231589910037410B /* Constants */,
+				956808FA230DB0F000844C7C /* Managers */,
+			);
+			path = Source;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

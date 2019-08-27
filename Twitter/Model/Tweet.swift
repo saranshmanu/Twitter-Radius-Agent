@@ -11,10 +11,12 @@ import RealmSwift
 
 class Tweet: Object {
     @objc dynamic var id: String?
+    @objc dynamic var name: String?
     @objc dynamic var username: String?
     @objc dynamic var text: String?
     @objc dynamic var date: Date?
     @objc dynamic var retweetCount: Int = 0
     @objc dynamic var likeCount: Int = 0
     @objc dynamic var imageUrl: String?
+    @objc dynamic var bannerUrl: String?
 }

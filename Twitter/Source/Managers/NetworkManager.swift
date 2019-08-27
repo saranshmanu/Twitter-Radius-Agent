@@ -80,7 +80,8 @@ class NetworkManager {
     
     // to get the tweets from search query by the user
     public static func getTweets(query: String, completion: @escaping (Bool, NSDictionary?) -> ()) {
-        let url = "https://api.twitter.com/1.1/search/tweets.json" + "?q=" + query
+        let searchText = query.replacingOccurrences(of: " ", with: "+")
+        let url = "https://api.twitter.com/1.1/search/tweets.json" + "?q=" + searchText
         let header = [
             "Authorization": "Bearer \(AuthenticationKeys.token)",
             ] as HTTPHeaders
