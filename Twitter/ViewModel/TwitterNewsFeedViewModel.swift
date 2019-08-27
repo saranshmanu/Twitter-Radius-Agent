@@ -28,6 +28,25 @@ class TwitterNewsFeedViewModel {
         return date
     }
     
+    let cache = NSCache<NSString, UIImage>()
+    
+    // get the cached image
+    public func getImage(path: String) -> UIImage {
+        let image = cache.object(forKey: path as NSString)
+        if image != nil {
+            return image!
+        } else {
+            return UIImage.init(named: "logo")!
+        }
+    }
+
+    // download the image and save at path with URL as the key
+    private func saveImage(url: String) {
+        NetworkManager.getImage(url: url) { (image) in
+            self.cache.setObject(image!, forKey: url as NSString)
+        }
+    }
+
     // cache the tweets from the newly fetched data on twitter
     private func cacheData(tweets: NSDictionary) {
         let flag = tweets["statuses"] as! [NSDictionary]
@@ -35,9 +54,13 @@ class TwitterNewsFeedViewModel {
             let tweet = Tweet()
             tweet.id = i["id_str"] as? String
             tweet.text = i["text"] as? String
+            tweet.retweetCount = i["retweet_count"] as! Int
+            tweet.likeCount = i["favorite_count"] as! Int
+            tweet.date = self.parseDate(date: i["created_at"] as! String)
             let user = i["user"] as! NSDictionary
             tweet.username = user["screen_name"] as? String
-            tweet.date = self.parseDate(date: i["created_at"] as! String)
+            tweet.imageUrl = user["profile_image_url_https"] as? String
+            self.saveImage(url: tweet.imageUrl!)
             DatabaseManager.addTweet(tweet: tweet)
         }
         updateNewsFeed()

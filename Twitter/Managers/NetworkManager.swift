@@ -34,6 +34,20 @@ class NetworkHandler {
             }
         }
     }
+    
+    private static func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
+        URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
+    }
+    
+    public static func downloadImage(from url: URL, completion: @escaping (UIImage?) -> ()) {
+        var image: UIImage?
+        getData(from: url) { data, response, error in
+            guard let data = data, error == nil else { return }
+            print(response?.suggestedFilename ?? url.lastPathComponent)
+            image = UIImage(data: data)
+            completion(image)
+        }
+    }
 }
 
 // the Network Manager class mannages the differnt requests to the Twitter backend to fetech results
@@ -80,4 +94,9 @@ class NetworkManager {
         }
     }
     
+    public static func getImage(url: String, completion: @escaping (UIImage?) -> ()) {
+        NetworkHandler.downloadImage(from: URL(string:url)!) { (image) in
+            completion(image)
+        }
+    }
 }

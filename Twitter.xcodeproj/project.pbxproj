@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		89B6FCB1E5860FB3D186C64F /* Pods_TwitterTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32BFE6DD84F0FBD44A1FA40B /* Pods_TwitterTests.framework */; };
 		956808C1230D96BC00844C7C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956808C0230D96BC00844C7C /* AppDelegate.swift */; };
-		956808C3230D96BC00844C7C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956808C2230D96BC00844C7C /* ViewController.swift */; };
 		956808C6230D96BC00844C7C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 956808C4230D96BC00844C7C /* Main.storyboard */; };
 		956808C8230D96BE00844C7C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 956808C7230D96BE00844C7C /* Assets.xcassets */; };
 		956808CB230D96BE00844C7C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 956808C9230D96BE00844C7C /* LaunchScreen.storyboard */; };
@@ -21,6 +20,8 @@
 		956808FC230DB10400844C7C /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956808FB230DB10400844C7C /* NetworkManager.swift */; };
 		956808FE230DB10D00844C7C /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956808FD230DB10D00844C7C /* DatabaseManager.swift */; };
 		95680900230E84F400844C7C /* Base64Encoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956808FF230E84F400844C7C /* Base64Encoding.swift */; };
+		956809022315369400844C7C /* NewsFeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956809012315369400844C7C /* NewsFeedTableViewCell.swift */; };
+		956809052315389300844C7C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956809042315389300844C7C /* ViewController.swift */; };
 		964A1F37F3DA626ABF43B2EB /* Pods_TwitterUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60384CB6AB190A6509F4E39D /* Pods_TwitterUITests.framework */; };
 		B42F9193345866005561E601 /* Pods_Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93E79346BBA5220DA7413B60 /* Pods_Twitter.framework */; };
 /* End PBXBuildFile section */
@@ -52,7 +53,6 @@
 		93E79346BBA5220DA7413B60 /* Pods_Twitter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Twitter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		956808BD230D96BC00844C7C /* Twitter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Twitter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		956808C0230D96BC00844C7C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		956808C2230D96BC00844C7C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		956808C5230D96BC00844C7C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		956808C7230D96BE00844C7C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		956808CA230D96BE00844C7C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -69,6 +69,8 @@
 		956808FB230DB10400844C7C /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		956808FD230DB10D00844C7C /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		956808FF230E84F400844C7C /* Base64Encoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Base64Encoding.swift; sourceTree = "<group>"; };
+		956809012315369400844C7C /* NewsFeedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedTableViewCell.swift; sourceTree = "<group>"; };
+		956809042315389300844C7C /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = Twitter/View/ViewController.swift; sourceTree = SOURCE_ROOT; };
 		BB18B403D8FF5C3DF5B91EAF /* Pods-Twitter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Twitter.debug.xcconfig"; path = "Target Support Files/Pods-Twitter/Pods-Twitter.debug.xcconfig"; sourceTree = "<group>"; };
 		D85B2881CABFD7F4F52CD21B /* Pods-TwitterUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TwitterUITests.release.xcconfig"; path = "Target Support Files/Pods-TwitterUITests/Pods-TwitterUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -189,10 +191,11 @@
 		956808F3230D9EAC00844C7C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				95680903231536AC00844C7C /* TableCell */,
 				956808F9230DAEFA00844C7C /* Storyboards */,
 				956808C7230D96BE00844C7C /* Assets.xcassets */,
 				956808C0230D96BC00844C7C /* AppDelegate.swift */,
-				956808C2230D96BC00844C7C /* ViewController.swift */,
+				956809042315389300844C7C /* ViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -221,6 +224,14 @@
 				956808FD230DB10D00844C7C /* DatabaseManager.swift */,
 			);
 			path = Managers;
+			sourceTree = "<group>";
+		};
+		95680903231536AC00844C7C /* TableCell */ = {
+			isa = PBXGroup;
+			children = (
+				956809012315369400844C7C /* NewsFeedTableViewCell.swift */,
+			);
+			path = TableCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -446,9 +457,10 @@
 			files = (
 				956808FC230DB10400844C7C /* NetworkManager.swift in Sources */,
 				956808F8230DADA200844C7C /* TwitterNewsFeedViewModel.swift in Sources */,
-				956808C3230D96BC00844C7C /* ViewController.swift in Sources */,
 				95680900230E84F400844C7C /* Base64Encoding.swift in Sources */,
+				956809052315389300844C7C /* ViewController.swift in Sources */,
 				956808C1230D96BC00844C7C /* AppDelegate.swift in Sources */,
+				956809022315369400844C7C /* NewsFeedTableViewCell.swift in Sources */,
 				956808F6230DA23200844C7C /* Tweet.swift in Sources */,
 				956808EF230D9AE400844C7C /* Constants.swift in Sources */,
 				956808FE230DB10D00844C7C /* DatabaseManager.swift in Sources */,

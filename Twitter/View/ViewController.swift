@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  TwitterFeedViewController.swift
 //  Twitter
 //
 //  Created by Saransh Mittal on 21/08/19.
@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-class ViewController: UIViewController, UITableViewDelegate {
+class TwitterFeedViewController: UIViewController, UITableViewDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     var twitterNewsFeed: TwitterNewsFeedViewModel?
@@ -19,13 +19,18 @@ class ViewController: UIViewController, UITableViewDelegate {
         // Do any additional setup after loading the view.
         tableView.delegate = self
         twitterNewsFeed = TwitterNewsFeedViewModel()
-        twitterNewsFeed?.newsFeed.bind(to: tableView.rx.items(cellIdentifier: "tweet")) { row, model, cell in
-//            cell.textLabel?.text = "\(model.name), \(model.desc)"
+        twitterNewsFeed?.newsFeed.bind(to: tableView.rx.items(cellIdentifier: "tweet", cellType: NewsFeedTableViewCell.self)) { row, model, cell in
+            cell.usernameLabel.text = "@\(model.username!)﹒\(model.date!)"
+            cell.tweetLabel.text = "@\(model.text!)"
+            cell.retweetButton.setTitle(" \(model.retweetCount)", for: .init())
+            cell.likeButton.setTitle(" \(model.likeCount)", for: .init())
+            cell.userImageView.image = self.twitterNewsFeed?.getImage(path: model.imageUrl!)
             }.disposed(by: twitterNewsFeed!.disposeBag)
         
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        print(DatabaseManager.getFileURL())
         DispatchQueue.main.async {
             self.checkForTweetUpdates(query: "france")
         }

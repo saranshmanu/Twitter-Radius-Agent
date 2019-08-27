@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Twitter Feed View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Twitter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="TwitterFeedViewController" customModule="Twitter" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -30,14 +30,14 @@
                                     </connections>
                                 </searchBar>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="tweet" rowHeight="128" id="6jz-OQ-GaX">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="tweet" rowHeight="128" id="6jz-OQ-GaX" customClass="NewsFeedTableViewCell" customModule="Twitter" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="72" width="414" height="128"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6jz-OQ-GaX" id="2gO-Zx-DRh">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="127.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Peu-DZ-obP">
+                                                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Peu-DZ-obP">
                                                     <rect key="frame" x="20" y="11" width="60" height="60"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="U9W-zG-D0Y">
@@ -82,6 +82,7 @@
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2uf-5k-3gb">
                                                                     <rect key="frame" x="80.5" y="0.0" width="80.5" height="29.5"/>
+                                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
                                                                     <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <state key="normal" image="retweet">
                                                                         <color key="titleColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
@@ -89,6 +90,7 @@
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ejw-MR-jeo">
                                                                     <rect key="frame" x="161" y="0.0" width="80.5" height="29.5"/>
+                                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
                                                                     <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <state key="normal" image="like">
                                                                         <color key="titleColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
@@ -115,6 +117,16 @@
                                                 <constraint firstItem="Peu-DZ-obP" firstAttribute="leading" secondItem="2gO-Zx-DRh" secondAttribute="leadingMargin" id="iYv-eZ-3FL"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="commentButton" destination="4ps-c1-1lk" id="hXj-KW-le9"/>
+                                            <outlet property="likeButton" destination="Ejw-MR-jeo" id="9WK-Ln-AIU"/>
+                                            <outlet property="propertiesButton" destination="yXO-FJ-S4P" id="qkS-DS-4av"/>
+                                            <outlet property="retweetButton" destination="2uf-5k-3gb" id="eGJ-3Z-t4r"/>
+                                            <outlet property="tweetLabel" destination="iI5-fi-RCy" id="SQh-Um-1Eo"/>
+                                            <outlet property="userImageView" destination="U9W-zG-D0Y" id="A4J-uC-9qr"/>
+                                            <outlet property="userView" destination="Peu-DZ-obP" id="phe-hX-1wz"/>
+                                            <outlet property="usernameLabel" destination="7Eg-nr-q3z" id="xHK-iO-vNX"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="YHm-GA-yWS">
                                         <rect key="frame" x="0.0" y="200" width="414" height="44"/>
