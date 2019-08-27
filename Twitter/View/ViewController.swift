@@ -29,23 +29,28 @@ class TwitterFeedViewController: UIViewController, UITableViewDelegate {
         navigationItem.titleView = imageView
     }
     
+    func updateTableCell(cell: NewsFeedTableViewCell, model: Tweet) {
+        let date = self.twitterNewsFeed?.dateSummary(date: model.date!) as! String
+        cell.nameLabel.text = "\(model.name!)"
+        cell.tweetLabel.text = "\(model.text!)"
+        cell.usernameLabel.text = "@\(model.username!)﹒\(date)"
+        cell.likeButton.setTitle(" \(model.likeCount)", for: .init())
+        cell.retweetButton.setTitle(" \(model.retweetCount)", for: .init())
+        cell.userImageView.image = self.twitterNewsFeed?.getImage(path: model.imageUrl!)
+        if model.bannerUrl != nil {
+            cell.tweetImageView.isHidden = false
+            cell.tweetImageView.image = self.twitterNewsFeed?.getImage(path: model.bannerUrl!)
+        } else {
+            cell.tweetImageView.isHidden = true
+        }
+    }
+    
     func initTableView() {
         tableView.delegate = self
         twitterNewsFeed = TwitterNewsFeedViewModel()
         twitterNewsFeed?.newsFeed.bind(to: tableView.rx.items(cellIdentifier: "tweet", cellType: NewsFeedTableViewCell.self)) { row, model, cell in
-            let date: String = self.twitterNewsFeed?.dateSummary(date: model.date!) as! String
-            cell.nameLabel.text = "\(model.name!)"
-            cell.usernameLabel.text = "@\(model.username!)﹒\(date)"
-            cell.tweetLabel.text = "\(model.text!)"
-            cell.retweetButton.setTitle(" \(model.retweetCount)", for: .init())
-            cell.likeButton.setTitle(" \(model.likeCount)", for: .init())
-            cell.userImageView.image = self.twitterNewsFeed?.getImage(path: model.imageUrl!)
-            if model.bannerUrl != nil {
-                self.twitterNewsFeed?.getImage(path: model.bannerUrl!)
-            } else {
-                cell.tweetImageView.isHidden = true
-            }
-            }.disposed(by: twitterNewsFeed!.disposeBag)
+            self.updateTableCell(cell: cell, model: model)
+        }.disposed(by: twitterNewsFeed!.disposeBag)
     }
     
     func searchForTweets(query: String) {
