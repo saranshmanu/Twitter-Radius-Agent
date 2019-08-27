@@ -39,6 +39,7 @@ class NetworkHandler {
         URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
     }
     
+    // fetch the image from the internet
     public static func downloadImage(from url: URL, completion: @escaping (UIImage?) -> ()) {
         var image: UIImage?
         getData(from: url) { data, response, error in
@@ -95,6 +96,7 @@ class NetworkManager {
         }
     }
     
+    // to download the image from the network
     public static func getImage(url: String, completion: @escaping (UIImage?) -> ()) {
         NetworkHandler.downloadImage(from: URL(string:url)!) { (image) in
             completion(image)

@@ -28,6 +28,7 @@ class TwitterNewsFeedViewModel {
         return date
     }
     
+    // get the date summary of how old a date is from the current date
     public func dateSummary(date: Date) -> String {
         let tweetDate = Calendar.current.dateComponents([.day, .hour, .second, .minute], from: date)
         let currentDate = Calendar.current.dateComponents([.day, .hour, .second, .minute], from: Date.init())
@@ -35,36 +36,27 @@ class TwitterNewsFeedViewModel {
         let minutes = currentDate.minute! - tweetDate.minute!
         let hours = currentDate.hour! - tweetDate.hour!
         let days = currentDate.day! - tweetDate.day!
-        if days > 0 {
+        if days >= 1 {
             return "\(String(describing: days))d"
-        } else if hours > 0 {
+        } else if hours >= 1 {
             return "\(String(describing: hours))h"
-        } else if minutes > 0 {
+        } else if minutes >= 1 {
             return "\(String(describing: minutes))m"
-        } else if seconds > 0 {
+        } else if seconds >= 1 {
             return "\(String(describing: seconds))s"
         } else {
             return ""
         }
     }
     
-    let cache = NSCache<NSString, UIImage>()
-    
     // get the cached image
-    public func getImage(path: String) -> UIImage {
-        let image = cache.object(forKey: path as NSString)
-        if image != nil {
-            return image!
-        } else {
-            return UIImage.init(named: "black")!
-        }
+    public func getImage(path: String) -> UIImage? {
+        return DatabaseManager.getImage(path: path)
     }
 
     // download the image and save at path with URL as the key
     private func saveImage(url: String) {
-        NetworkManager.getImage(url: url) { (image) in
-            self.cache.setObject(image!, forKey: url as NSString)
-        }
+        DatabaseManager.addImage(url: url)
     }
 
     // cache the tweets from the newly fetched data on twitter
