@@ -9,6 +9,7 @@ target 'Twitter' do
 pod 'Alamofire', '~> 4.0'
 pod 'RealmSwift'
 pod 'RxSwift'
+pod 'RxCocoa'
 
   target 'TwitterTests' do
     inherit! :search_paths

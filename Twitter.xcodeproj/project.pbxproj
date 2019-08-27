@@ -16,8 +16,8 @@
 		956808D6230D96BF00844C7C /* TwitterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956808D5230D96BF00844C7C /* TwitterTests.swift */; };
 		956808E1230D96BF00844C7C /* TwitterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956808E0230D96BF00844C7C /* TwitterUITests.swift */; };
 		956808EF230D9AE400844C7C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956808EE230D9AE400844C7C /* Constants.swift */; };
-		956808F6230DA23200844C7C /* Tweets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956808F5230DA23200844C7C /* Tweets.swift */; };
-		956808F8230DADA200844C7C /* TweetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956808F7230DADA200844C7C /* TweetViewModel.swift */; };
+		956808F6230DA23200844C7C /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956808F5230DA23200844C7C /* Tweet.swift */; };
+		956808F8230DADA200844C7C /* TwitterNewsFeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956808F7230DADA200844C7C /* TwitterNewsFeedViewModel.swift */; };
 		956808FC230DB10400844C7C /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956808FB230DB10400844C7C /* NetworkManager.swift */; };
 		956808FE230DB10D00844C7C /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956808FD230DB10D00844C7C /* DatabaseManager.swift */; };
 		95680900230E84F400844C7C /* Base64Encoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956808FF230E84F400844C7C /* Base64Encoding.swift */; };
@@ -64,8 +64,8 @@
 		956808E0230D96BF00844C7C /* TwitterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterUITests.swift; sourceTree = "<group>"; };
 		956808E2230D96BF00844C7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		956808EE230D9AE400844C7C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		956808F5230DA23200844C7C /* Tweets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tweets.swift; sourceTree = "<group>"; };
-		956808F7230DADA200844C7C /* TweetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetViewModel.swift; sourceTree = "<group>"; };
+		956808F5230DA23200844C7C /* Tweet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
+		956808F7230DADA200844C7C /* TwitterNewsFeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterNewsFeedViewModel.swift; sourceTree = "<group>"; };
 		956808FB230DB10400844C7C /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		956808FD230DB10D00844C7C /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		956808FF230E84F400844C7C /* Base64Encoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Base64Encoding.swift; sourceTree = "<group>"; };
@@ -181,7 +181,7 @@
 		956808F2230D9EA400844C7C /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				956808F5230DA23200844C7C /* Tweets.swift */,
+				956808F5230DA23200844C7C /* Tweet.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -200,7 +200,7 @@
 		956808F4230D9EB200844C7C /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				956808F7230DADA200844C7C /* TweetViewModel.swift */,
+				956808F7230DADA200844C7C /* TwitterNewsFeedViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -445,11 +445,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				956808FC230DB10400844C7C /* NetworkManager.swift in Sources */,
-				956808F8230DADA200844C7C /* TweetViewModel.swift in Sources */,
+				956808F8230DADA200844C7C /* TwitterNewsFeedViewModel.swift in Sources */,
 				956808C3230D96BC00844C7C /* ViewController.swift in Sources */,
 				95680900230E84F400844C7C /* Base64Encoding.swift in Sources */,
 				956808C1230D96BC00844C7C /* AppDelegate.swift in Sources */,
-				956808F6230DA23200844C7C /* Tweets.swift in Sources */,
+				956808F6230DA23200844C7C /* Tweet.swift in Sources */,
 				956808EF230D9AE400844C7C /* Constants.swift in Sources */,
 				956808FE230DB10D00844C7C /* DatabaseManager.swift in Sources */,
 			);

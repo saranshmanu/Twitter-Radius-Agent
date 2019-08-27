@@ -7,35 +7,38 @@
 //
 
 import UIKit
-import RealmSwift
+import RxSwift
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITableViewDelegate {
+    
+    @IBOutlet weak var tableView: UITableView!
+    var twitterNewsFeed: TwitterNewsFeedViewModel?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        tableView.delegate = self
+        twitterNewsFeed = TwitterNewsFeedViewModel()
+        twitterNewsFeed?.newsFeed.bind(to: tableView.rx.items(cellIdentifier: "tweet")) { row, model, cell in
+//            cell.textLabel?.text = "\(model.name), \(model.desc)"
+            }.disposed(by: twitterNewsFeed!.disposeBag)
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        updateCachedTweets()
         DispatchQueue.main.async {
-            self.checkForTweetUpdates(query: "elon")
+            self.checkForTweetUpdates(query: "france")
         }
     }
 
-    func updateCachedTweets() {
-        let tweets: [Tweet] = TweetViewModel.getTweets()
-        // make all the following UI updates to proceed
-        print(tweets.count)
-    }
-
     func checkForTweetUpdates(query: String) {
-        TweetViewModel.refreshTweets(query: query) {(success, tweets) in
+        twitterNewsFeed?.refreshTwitterFeed(query: query) {(success, tweets) in
             if success == true {
                 // updates available and updating the UI accordingly
-                self.updateCachedTweets()
+                print("New tweets added")
             } else {
                 // no new tweet updates available for the UI updation
+                print("No new tweet available for the keyword")
             }
         }
     }

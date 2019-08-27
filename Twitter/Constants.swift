@@ -19,12 +19,3 @@ class AuthenticationKeys {
     static let encoding = "yD7KaBsAJSjqeOLXTucW2pVCz:kQdZMLEPXja7WkDsqRcHYUSFhl9z0lp6pbLzBJScgynrYQgkMF"
     static var token =  "​"
 }
-
-class TwitterKeys {
-    static let tweetId =  "​id_str"
-    static let username = "​screen_name"
-    static let text =  "​text"
-    static let user = "user"
-    static let createdDate =  "​created_at"
-    static let status = "statuses"
-}
