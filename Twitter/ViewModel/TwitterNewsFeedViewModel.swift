@@ -116,7 +116,11 @@ class TwitterNewsFeedViewModel {
                 NetworkManager.getTweets(query: query, completion: { (success, tweets) in
                     if success == true {
                         self.cacheData(tweets: tweets!)
-                        completion(true, self.newsFeed.value)
+                        if DatabaseManager.getTweetCount() == 0 {
+                            completion(false, self.newsFeed.value)
+                        } else {
+                            completion(true, self.newsFeed.value)
+                        }
                     } else {
                         completion(false, self.newsFeed.value)
                     }

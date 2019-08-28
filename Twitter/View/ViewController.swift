@@ -16,24 +16,39 @@ class TwitterFeedViewController: UIViewController, UITableViewDelegate {
     var twitterNewsFeed: TwitterNewsFeedViewModel?
     var searchText = ""
     
+    var navController: UINavigationController? = nil
+    var activityLoader: UIActivityIndicatorView? = nil
+    
     func addNavigationBarImage() {
-        let navController = navigationController!
-        let image = UIImage(named: "Twitter.png") //Your logo url here
+        navController = navigationController!
+        let image = UIImage(named: "Twitter.png")
         let imageView = UIImageView(image: image)
-        let bannerWidth = navController.navigationBar.frame.size.width
-        let bannerHeight = navController.navigationBar.frame.size.height
-        let bannerX = bannerWidth / 2 - (image?.size.width)! / 2
-        let bannerY = bannerHeight / 2 - (image?.size.height)! / 2
-        imageView.frame = CGRect(x: bannerX, y: bannerY, width: bannerWidth, height: bannerHeight)
+        let bannerWidth = navController?.navigationBar.frame.size.width
+        let bannerHeight = navController?.navigationBar.frame.size.height
+        let bannerX = bannerWidth! / 2 - (image?.size.width)! / 2
+        let bannerY = bannerHeight! / 2 - (image?.size.height)! / 2
+        imageView.frame = CGRect(x: bannerX, y: bannerY, width: bannerWidth!, height: bannerHeight!)
         imageView.contentMode = .scaleAspectFit
         navigationItem.titleView = imageView
     }
     
+    func addActivityLoader() {
+        activityLoader = UIActivityIndicatorView.init(activityIndicatorStyle: .gray)
+        let refreshBarButton: UIBarButtonItem = UIBarButtonItem(customView: activityLoader!)
+        self.navigationItem.rightBarButtonItem = refreshBarButton
+    }
+    
+    func showAlert(message: String, title: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Close", style: .cancel, handler: nil))
+        self.present(alert, animated: true)
+    }
+    
     func updateTableCell(cell: NewsFeedTableViewCell, model: Tweet) {
-        let date = self.twitterNewsFeed?.dateSummary(date: model.date!) as! String
+        let date = self.twitterNewsFeed?.dateSummary(date: model.date!)
         cell.nameLabel.text = "\(model.name!)"
         cell.tweetLabel.text = "\(model.text!)"
-        cell.usernameLabel.text = "@\(model.username!)﹒\(date)"
+        cell.usernameLabel.text = "@\(model.username!)﹒\(String(describing: date!))"
         cell.likeButton.setTitle(" \(model.likeCount)", for: .init())
         cell.retweetButton.setTitle(" \(model.retweetCount)", for: .init())
         cell.userImageView.image = self.twitterNewsFeed?.getImage(path: model.imageUrl!)
@@ -54,13 +69,15 @@ class TwitterFeedViewController: UIViewController, UITableViewDelegate {
     }
     
     func searchForTweets(query: String) {
+        activityLoader?.startAnimating()
         DispatchQueue.main.async {
             self.twitterNewsFeed?.refreshTwitterFeed(query: query) {(success, tweets) in
                 if success == true {
-                    print("New tweets added")
+                    // New feed updated to the Realm Database
                 } else {
-                    print("No new tweet available for the keyword")
+                    self.showAlert(message: "Feed not found for the searched query", title: "Error")
                 }
+                self.activityLoader?.stopAnimating()
             }
         }
     }
@@ -70,6 +87,7 @@ class TwitterFeedViewController: UIViewController, UITableViewDelegate {
         initTableView()
         initSearchBar()
         addNavigationBarImage()
+        addActivityLoader()
     }
     
     override func viewDidAppear(_ animated: Bool) {

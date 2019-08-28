@@ -153,8 +153,8 @@
 			children = (
 				95C345D32315899C0037410B /* Source */,
 				956808F2230D9EA400844C7C /* Model */,
-				956808F4230D9EB200844C7C /* ViewModel */,
 				956808F3230D9EAC00844C7C /* View */,
+				956808F4230D9EB200844C7C /* ViewModel */,
 				956808CC230D96BE00844C7C /* Info.plist */,
 			);
 			path = Twitter;

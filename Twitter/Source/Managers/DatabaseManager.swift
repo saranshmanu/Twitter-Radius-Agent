@@ -52,6 +52,11 @@ class DatabaseManager {
         return Array((database?.objects(Tweet.self))!)
     }
     
+    // fetch the twitter feed from the Realm database
+    public static func getTweetCount() -> Int {
+        return Array((database?.objects(Tweet.self))!).count
+    }
+    
     // fetch the twitter feed from the Realm database with a keyword query
     public static func getTweets(withQuery text: String) -> [Tweet] {
         return Array((database?.objects(Tweet.self).filter(text))!)
